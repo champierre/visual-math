@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>球の体積のひみつ｜ビジュアル算数</title>
+<meta name="description" content="球（ボール）の体積の求め方を、動画アニメーションと図解で小学生にもわかるように説明します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">ビジュアル算数</p>
+  <h1><ruby>球<rt>きゅう</rt></ruby>の<ruby>体積<rt>たいせき</rt></ruby>の ひみつ</h1>
+  <p class="lead">ボールの中には、水がどれくらい入るのかな？<br>動画と図で、球の体積の<ruby>求<rt>もと</rt></ruby>め方をたしかめよう！</p>
+  <nav class="toc" aria-label="ページ内リンク">
+    <a href="#movie">🎬 動画で見る</a>
+    <a href="#steps">📖 図で見る</a>
+    <a href="#calc">🧮 計算する</a>
+    <a href="#try">🏠 実験する</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ===== 1. 動画 ===== -->
+<section id="movie" class="section">
+  <h2><span class="num">1</span>動画で 見てみよう</h2>
+  <p class="note">▶ ボタンをおすと動画がはじまるよ（約1分）。「よみあげ」をONにすると、声で読んでくれるよ。</p>
+
+  <div class="player">
+    <div class="screen">
+      <canvas id="stage" width="800" height="450" aria-label="球の体積の説明アニメーション"></canvas>
+      <button id="bigPlay" class="big-play" aria-label="再生"><span>▶</span><small>さいせい</small></button>
+    </div>
+    <div id="caption" class="caption" aria-live="polite"></div>
+    <div class="controls">
+      <button id="btnPlay" class="btn primary">▶ 再生</button>
+      <button id="btnPrev" class="btn">⏮ まえ</button>
+      <button id="btnNext" class="btn">⏭ つぎ</button>
+      <button id="btnRestart" class="btn">↺ さいしょから</button>
+      <label class="toggle"><input type="checkbox" id="chkVoice"> 🔊 よみあげ</label>
+    </div>
+    <div class="seek">
+      <input type="range" id="seek" min="0" max="60" step="0.1" value="0" aria-label="再生位置">
+      <span id="time">0:00 / 0:00</span>
+    </div>
+    <ol id="chapters" class="chapters" aria-label="チャプター"></ol>
+  </div>
+</section>
+
+<!-- ===== 2. 図解 ===== -->
+<section id="steps" class="section">
+  <h2><span class="num">2</span>図で たしかめよう</h2>
+
+  <article class="card">
+    <h3><span class="step">ステップ1</span>球が ぴったり入る <ruby>円柱<rt>えんちゅう</rt></ruby></h3>
+    <div class="card-body">
+      <svg viewBox="0 0 360 310" class="fig" role="img" aria-label="円柱の中にぴったり入った球の図">
+        <defs>
+          <radialGradient id="ballG" cx="38%" cy="32%" r="70%">
+            <stop offset="0" stop-color="#ffd0a8"/>
+            <stop offset="1" stop-color="#ff7a2e"/>
+          </radialGradient>
+        </defs>
+        <!-- はば -->
+        <line x1="60" y1="28" x2="240" y2="28" stroke="#ff5c8a" stroke-width="3" stroke-linecap="round"/>
+        <line x1="60" y1="20" x2="60" y2="36" stroke="#ff5c8a" stroke-width="3"/>
+        <line x1="240" y1="20" x2="240" y2="36" stroke="#ff5c8a" stroke-width="3"/>
+        <text x="150" y="16" text-anchor="middle" fill="#ff5c8a" font-size="15" font-weight="700">はば ＝ 半径×2</text>
+        <!-- 円柱 -->
+        <path d="M60 70 L60 250 A90 25 0 0 0 240 250 L240 70" fill="rgba(215,236,255,0.55)" stroke="#3b5577" stroke-width="3"/>
+        <ellipse cx="150" cy="70" rx="90" ry="25" fill="rgba(215,236,255,0.7)" stroke="#3b5577" stroke-width="3"/>
+        <!-- 球 -->
+        <circle cx="150" cy="160" r="90" fill="url(#ballG)" opacity="0.85" stroke="#3b5577" stroke-width="3"/>
+        <!-- 半径 -->
+        <line x1="150" y1="160" x2="240" y2="160" stroke="#8e6cf0" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="150" cy="160" r="5" fill="#8e6cf0"/>
+        <text x="195" y="150" text-anchor="middle" fill="#8e6cf0" font-size="15" font-weight="700">半径</text>
+        <!-- 高さ -->
+        <line x1="280" y1="70" x2="280" y2="250" stroke="#3cbf7c" stroke-width="3" stroke-linecap="round"/>
+        <line x1="272" y1="70" x2="288" y2="70" stroke="#3cbf7c" stroke-width="3"/>
+        <line x1="272" y1="250" x2="288" y2="250" stroke="#3cbf7c" stroke-width="3"/>
+        <text x="292" y="150" fill="#3cbf7c" font-size="15" font-weight="700">高さ</text>
+        <text x="292" y="170" fill="#3cbf7c" font-size="15" font-weight="700">＝半径×2</text>
+        <text x="150" y="295" text-anchor="middle" fill="#2b3a55" font-size="15" font-weight="700">球がぴったり入る円柱</text>
+      </svg>
+      <div class="text">
+        <p>ボール（球）が <b>ぴったり</b> 入る<ruby>筒<rt>つつ</rt></ruby>（円柱）を用意します。</p>
+        <ul>
+          <li>円柱の<b class="pink">はば</b>は、球の <b>半径×2</b></li>
+          <li>円柱の<b class="green">高さ</b>も、球の <b>半径×2</b></li>
+        </ul>
+        <p>「<ruby>半径<rt>はんけい</rt></ruby>」は、球の<ruby>真<rt>ま</rt></ruby>ん中から<ruby>表面<rt>ひょうめん</rt></ruby>までの長さのことだよ。</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3><span class="step">ステップ2</span>水の実験 ── 球は 円柱の「3分の2」</h3>
+    <div class="card-body">
+      <svg viewBox="0 0 380 310" class="fig" role="img" aria-label="円柱に球と円すいの水を入れると、3分の2と3分の1でちょうどいっぱいになる図">
+        <!-- 円柱本体 -->
+        <path d="M50 60 L50 240 A80 22 0 0 0 210 240 L210 60" fill="rgba(215,236,255,0.55)" stroke="#3b5577" stroke-width="3"/>
+        <!-- 球の水（下 2/3） -->
+        <path d="M50 120 L50 240 A80 22 0 0 0 210 240 L210 120" fill="#4fb0ff"/>
+        <!-- 円すいの水（上 1/3） -->
+        <path d="M50 60 L50 120 A80 22 0 0 0 210 120 L210 60" fill="#7ee0a8"/>
+        <ellipse cx="130" cy="120" rx="80" ry="22" fill="#2f8fe0"/>
+        <ellipse cx="130" cy="60" rx="80" ry="22" fill="#4fcf8a" stroke="#3b5577" stroke-width="3"/>
+        <!-- 目もり -->
+        <line x1="50" y1="180" x2="210" y2="180" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/>
+        <line x1="50" y1="120" x2="210" y2="120" stroke="#fff" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="222" y="245" fill="#2b3a55" font-size="14" font-weight="700">0</text>
+        <text x="222" y="185" fill="#2b3a55" font-size="14" font-weight="700">3分の1</text>
+        <text x="222" y="125" fill="#2b3a55" font-size="14" font-weight="700">3分の2</text>
+        <text x="222" y="65" fill="#2b3a55" font-size="14" font-weight="700">いっぱい</text>
+        <!-- 説明 -->
+        <circle cx="300" cy="215" r="22" fill="#4fb0ff" stroke="#3b5577" stroke-width="3"/>
+        <text x="330" y="212" fill="#2b3a55" font-size="14" font-weight="700">球の水</text>
+        <text x="330" y="230" fill="#2f8fe0" font-size="13" font-weight="700">＝3分の2</text>
+        <path d="M280 110 L322 110 L301 150 Z" fill="#7ee0a8" stroke="#3b5577" stroke-width="3" stroke-linejoin="round"/>
+        <text x="330" y="150" fill="#2b3a55" font-size="14" font-weight="700">円すいの水</text>
+        <text x="330" y="168" fill="#2f9f5a" font-size="13" font-weight="700">＝3分の1</text>
+        <text x="190" y="295" text-anchor="middle" fill="#2b3a55" font-size="15" font-weight="700">円すい：球：円柱 ＝ 1：2：3</text>
+      </svg>
+      <div class="text">
+        <p>球いっぱいに入れた水を、ステップ1の円柱にうつすと……</p>
+        <p class="big">ちょうど <b class="orange">3分の2</b> まで入る！</p>
+        <p>これが いちばん大事な発見。つまり、</p>
+        <p class="formula-line">球の体積 ＝ 円柱の体積 × <span class="frac"><span>2</span><span>3</span></span></p>
+        <p class="sub">おまけ：同じはば・同じ高さの<b class="green">円すい</b>の水を入れると、のこりの 3分の1 がぴったりうまるよ。円すい：球：円柱 ＝ 1：2：3 だね。</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3><span class="step">ステップ3</span><ruby>公式<rt>こうしき</rt></ruby>が できるまで</h3>
+    <div class="derive">
+      <div class="row"><span class="lbl">円柱の体積</span><span class="eq">＝</span><span class="chip pink">底面積</span><span class="op">×</span><span class="chip green">高さ</span></div>
+      <div class="row"><span class="lbl"></span><span class="eq">＝</span><span class="chip pink">半径×半径×3.14</span><span class="op">×</span><span class="chip green">半径×2</span></div>
+      <div class="row"><span class="lbl"></span><span class="eq">＝</span><span class="chip ink">半径×半径×半径×3.14×2</span></div>
+      <div class="row gap"><span class="lbl">球の体積</span><span class="eq">＝</span><span class="chip ink">円柱の体積</span><span class="op">×</span><span class="chip orange">2/3</span></div>
+      <div class="row"><span class="lbl"></span><span class="eq">＝</span><span class="chip ink">半径×半径×半径×3.14</span><span class="op">×</span><span class="chip pink">2</span><span class="op">×</span><span class="chip orange">2/3</span></div>
+      <div class="row"><span class="lbl"></span><span class="eq">＝</span><span class="chip ink">半径×半径×半径×3.14</span><span class="op">×</span><span class="chip purple">4/3</span></div>
+      <p class="why">「×2 してから 3分の2 にする」は「×4 してから ÷3」と同じ。だから <b>×4/3</b> になるよ。</p>
+    </div>
+    <div class="formula-box">
+      <p class="fb-title">球の体積の公式</p>
+      <p class="fb-main">球の体積 ＝ <span class="hl purple">半径×半径×半径</span> × <span class="hl">3.14</span> × <span class="hl orange">4</span> ÷ <span class="hl orange">3</span></p>
+      <p class="fb-sub">中学生の書き方だと <span class="math">V ＝ <span class="frac"><span>4</span><span>3</span></span> π r<sup>3</sup></span>（π＝円周率 3.14…、r＝半径）</p>
+    </div>
+  </article>
+</section>
+
+<!-- ===== 3. 計算 ===== -->
+<section id="calc" class="section">
+  <h2><span class="num">3</span>計算してみよう</h2>
+  <p class="note">半径を入れると、公式にあてはめて 体積を計算するよ。いろいろなボールのボタンもおしてみてね。</p>
+  <div class="calc">
+    <div class="calc-left">
+      <label class="radius-label">半径
+        <input type="number" id="radius" value="3" min="0.1" max="1000" step="0.1"> cm
+      </label>
+      <div class="presets" id="presets"></div>
+      <svg viewBox="0 0 260 260" class="ball-preview" aria-hidden="true">
+        <defs>
+          <radialGradient id="ballG2" cx="38%" cy="32%" r="70%">
+            <stop offset="0" stop-color="#ffd0a8"/>
+            <stop offset="1" stop-color="#ff7a2e"/>
+          </radialGradient>
+        </defs>
+        <circle id="previewBall" cx="130" cy="130" r="24" fill="url(#ballG2)" stroke="#3b5577" stroke-width="3"/>
+        <line id="previewR" x1="130" y1="130" x2="154" y2="130" stroke="#8e6cf0" stroke-width="4" stroke-linecap="round"/>
+        <text id="previewText" x="130" y="245" text-anchor="middle" font-size="16" font-weight="700" fill="#2b3a55">半径 3 cm</text>
+      </svg>
+    </div>
+    <div class="calc-right">
+      <ol class="calc-steps" id="calcSteps"></ol>
+      <div class="result" id="calcResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. 実験 ===== -->
+<section id="try" class="section">
+  <h2><span class="num">4</span>おうちで 実験してみよう</h2>
+  <div class="card">
+    <div class="card-body">
+      <div class="text">
+        <p>用意するもの：<b>ボール</b>（ピンポン玉やスーパーボールなど、水にしずむもの）、ボールが <b>ぴったり入る筒</b>（計量カップやコップでもOK）、<b>水</b>。</p>
+        <ol class="howto">
+          <li>筒にボールを入れて、ボールが入るところまで（ボールの上ぎりぎりまで）水を入れる。</li>
+          <li>ボールをそっと取り出す。</li>
+          <li>水の高さを見てみよう。水は 筒の高さ（ボールの直径）の <b class="orange">3分の1</b> まで へっているはず！</li>
+        </ol>
+        <p>ボールが入っていた分だけ水がへるから、へった分（筒の <b class="orange">3分の2</b>）がボールの体積なんだね。</p>
+        <p class="sub">💡 きっちり 3分の2 にならなくても大丈夫。筒がボールよりちょっと大きかったり、水がこぼれたりするからね。だいたい合っていれば 大成功！</p>
+      </div>
+      <div class="mini-fact">
+        <p class="mf-title">🏛 ちょっとむかしの話</p>
+        <p>この「球は円柱の3分の2」というひみつは、今から2200年以上前に、ギリシャの<b>アルキメデス</b>という学者が見つけました。</p>
+        <p>アルキメデスはこの発見をとても気に入っていて、自分のお墓に「球と円柱」の絵をきざんでほしいとたのんだそうです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <p>ビジュアル算数 ── 球の体積のひみつ</p>
+</footer>
+
+<script src="movie.js"></script>
+<script src="calc.js"></script>
+</body>
+</html>
