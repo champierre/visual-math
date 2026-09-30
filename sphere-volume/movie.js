@@ -362,27 +362,18 @@
     },
     {
       title: '今日のゴール', dur: 7,
-      caption: 'ボールの中に入る水の量が「体積」。今日は球の体積を「なぜそうなるか」までわかるように<ruby>求<rt>もと</rt></ruby>めるよ。',
-      narration: 'ボールの中に 入る 水の量が、たいせき。今日は きゅうの たいせきを、なぜ そうなるかまで わかるように もとめるよ。',
-      draw(p, t) {
+      caption: '「<ruby>体積<rt>たいせき</rt></ruby>」は、立体の中身の大きさのこと。今日は球の体積を「なぜそうなるか」までわかるように<ruby>求<rt>もと</rt></ruby>めるよ。',
+      narration: 'たいせきは、りったいの 中身の 大きさの こと。今日は きゅうの たいせきを、なぜ そうなるかまで わかるように もとめるよ。',
+      draw(p) {
         background(); sceneTitle('今日の ゴール');
-        const lv = seg(p, 0.15, 0.6);
-        line('ボールの 中に 入る 水の量 ＝「体積」', 400, 95, { size: 27 });
-        if (p > 0.1 && p < 0.6) {
-          ctx.save(); ctx.fillStyle = C.water;
-          for (let i = 0; i < 3; i++) {
-            const y = 130 + ((t * 260 + i * 45) % 120);
-            ctx.beginPath(); ctx.ellipse(400 + (i - 1) * 6, y, 5, 8, 0, 0, Math.PI * 2); ctx.fill();
-          }
-          ctx.restore();
-        }
-        drawSphere(400, 255, 95, lv);
-        const d = seg(p, 0.62, 0.75);
+        line('「体積」＝ 立体の 中身の 大きさ', 400, 95, { size: 27 });
+        drawSphere(400, 255, 95, 0, { fill: 'rgba(255,138,61,0.8)' });
+        const d = seg(p, 0.3, 0.45);
         ctx.save(); ctx.globalAlpha = d; ctx.strokeStyle = C.purple; ctx.lineWidth = 5; ctx.lineCap = 'round';
         ctx.beginPath(); ctx.moveTo(400, 255); ctx.lineTo(495, 255); ctx.stroke();
         ctx.beginPath(); ctx.arc(400, 255, 6, 0, 7); ctx.fillStyle = C.purple; ctx.fill(); ctx.restore();
         line('半径', 447, 233, { size: 18, color: C.purple, alpha: d, bg: 'rgba(255,255,255,0.9)' });
-        line('半径から 体積を 計算する 方法を、理由つきで 見つけよう', 400, 410, { size: 23, color: C.waterDark, alpha: seg(p, 0.75, 0.9), bg: '#fff' });
+        line('半径から 球の体積を 計算する 方法を、理由つきで 見つけよう', 400, 410, { size: 23, color: C.waterDark, alpha: seg(p, 0.55, 0.7), bg: '#fff' });
       },
     },
     {
