@@ -38,7 +38,7 @@
       <li>半径×半径×半径 ＝ ${fmt(r)} × ${fmt(r)} × ${fmt(r)} ＝ <span class="v">${fmt(r3)}</span></li>
       <li>× 3.14 ＝ ${fmt(r3)} × 3.14 ＝ <span class="v">${fmt(a)}</span></li>
       <li>× 4 ＝ ${fmt(a)} × 4 ＝ <span class="v">${fmt(b)}</span></li>
-      <li>÷ 3 ＝ ${fmt(b)} ÷ 3 ＝ <span class="v">${fmt(v)}</span> <span class="k">（円柱の 3分の2 だからね）</span></li>`;
+      <li>÷ 3 ＝ ${fmt(b)} ÷ 3 ＝ <span class="v">${fmt(v)}</span> <span class="k">（×4÷3 ＝ 4/3 倍 するということ）</span></li>`;
 
     let cmp;
     if (v >= 1000) cmp = `1L の牛乳パック（1000cm³）約 <b>${fmt(v / 1000)}</b> 本分！`;

@@ -264,3 +264,10 @@ main { max-width: 960px; margin: 0 auto; padding: 0 16px 60px; }
   .big-play { width: 100px; height: 100px; font-size: 34px; }
   .toggle { margin-left: 0; }
 }
+
+/* ---------- slicer ---------- */
+.slicer { display: grid; gap: 10px; }
+.slider-label { display: flex; align-items: center; gap: 12px; font-weight: 900; font-size: 18px; }
+.slider-label input[type=range] { flex: 1; accent-color: var(--orange); height: 28px; }
+.text .tool { background: #f6f8fc; padding: 8px 12px; border-radius: 12px; }
+.why-inline { font-size: 13px; color: var(--muted); }
